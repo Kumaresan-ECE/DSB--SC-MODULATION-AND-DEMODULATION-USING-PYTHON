@@ -28,8 +28,53 @@ __Procedure__:
 6) Coherent demodulation (multiply by synchronized carrier)
 7) Low-pass filter to recover message
 
-   __Tabulation__:
+PROGRAM :
+~~~
+import numpy as np
+import matplotlib.pyplot as plt
 
-   __Output__:
+Am = 6.1
+fm = 486
+Ac = 12.2
+fc = 4860
+fs = 48600
 
-   __Result__:
+t = np.arange(0, 2/fm, 1/fs)
+
+m = Am * np.cos(2 * 3.14 * fm * t)
+
+plt.subplot(3,1,1)
+plt.plot(t, m)
+plt.title("Message Signal")
+
+c = Ac * np.cos(2 * 3.14 * fc * t)
+
+plt.subplot(3,1,2)
+plt.plot(t, c)
+plt.title("Carrier Signal")
+
+# DSB-SC Signal (carrier suppressed)
+s = m * np.cos(2 * 3.14 * fc * t)
+
+plt.subplot(3,1,3)
+plt.plot(t, s)
+plt.title("DSB-SC Signal")
+
+plt.tight_layout()
+plt.show()
+~~~
+
+   TABULATION :
+
+   <img width="709" height="1280" alt="image" src="https://github.com/user-attachments/assets/df0f2e89-e469-423d-ac04-97f6aa504258" />
+
+
+   OUTPUT :
+
+   <img width="915" height="686" alt="image" src="https://github.com/user-attachments/assets/f794a137-2a3d-42ec-93af-800b0dc3d59a" />
+
+
+   RESULT :
+
+   <img width="703" height="1280" alt="image" src="https://github.com/user-attachments/assets/3c1dc0d2-1dfc-4330-9844-250b7dad6a61" />
+
